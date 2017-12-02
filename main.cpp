@@ -6,7 +6,7 @@
 
 int main(int argc, char** argv) {
 	
-	Colour r = Colour::RED;
+	Colour r = Colour::GREEN;
 	Dice d(r);
 	
 	d.roll();
