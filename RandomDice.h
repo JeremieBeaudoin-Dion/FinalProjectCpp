@@ -1,6 +1,11 @@
+#ifndef _RANDOMDICE_H
+#define _RANDOMDICE_H
+
 struct RandomDice {
 	
 public:
-	int getValue();	
+	static int getValue();	
 	
 };
+
+#endif
