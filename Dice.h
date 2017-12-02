@@ -4,6 +4,11 @@
 #include"Colour.h"
 #include<iostream>
 
+/**
+ * A Dice object has a colour and a FACE value.
+ * when the roll() method is called, the face value
+ * is set randomly to a number between 1 and 6
+ */
 struct Dice {
 	const Colour colour;
 	int face;
@@ -13,6 +18,5 @@ struct Dice {
 };
 
 std::ostream& operator<<(std::ostream&, Dice&);
-
 
 #endif

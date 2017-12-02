@@ -2,6 +2,10 @@
 #include "Dice.h"
 #include "Colour.h"
 
+/**
+ * Basic constructor for a RollOfDice that stores a number 
+ * of die depending on a int value.
+ */
 RollOfDice::RollOfDice(int numberOfDice){
 	
 	for (int i=0; i<numberOfDice; ++i) {
@@ -19,17 +23,26 @@ RollOfDice::RollOfDice(int numberOfDice){
 	
 }
 
+/**
+ * Helper constructor for the pair() method
+ */
 RollOfDice::RollOfDice(Dice d1, Dice d2) {
 	allDices.push_back(d1);
 	allDices.push_back(d2);
 }
 
+/**
+ * Rolls each dice individually
+ */
 void RollOfDice::roll(){
 	for (int i=0; i<allDices.size(); ++i) {
 		allDices[i].roll();
 	}
 }
 
+/**
+ * Returns a RollOfDice consisting of the two desired dices.
+ */
 RollOfDice& RollOfDice::pair(Dice d1, Dice d2) {
 	return *(new RollOfDice(d1, d2));
 }

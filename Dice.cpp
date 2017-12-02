@@ -3,6 +3,10 @@
 #include "Colour.h"
 #include <iostream>
 
+/**
+ * Sets the face of the dice to a random value between
+ * 1 and 6.
+ */
 void Dice::roll() {
 	face = RandomDice::getValue();
 }
