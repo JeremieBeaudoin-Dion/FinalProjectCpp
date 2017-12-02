@@ -8,7 +8,9 @@ struct RollOfDice {
 	std::vector<Dice> allDices;
 	
 	RollOfDice(int numberOfDice);
+	RollOfDice(Dice, Dice);
 	void roll();
+	RollOfDice& pair(Dice, Dice);
 	
 	operator int() const{
 		int total = 0;
@@ -20,5 +22,7 @@ struct RollOfDice {
 		return total;
 	}
 };
+
+std::ostream& operator<<(std::ostream&, RollOfDice&);
 
 #endif
