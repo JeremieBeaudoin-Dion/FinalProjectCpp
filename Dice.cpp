@@ -3,7 +3,7 @@
 #include "Colour.h"
 #include <iostream>
 
-void Dice::Roll() {
+void Dice::roll() {
 	face = RandomDice::getValue();
 }
 

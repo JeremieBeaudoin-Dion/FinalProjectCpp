@@ -9,7 +9,7 @@ struct Dice {
 	int face;
 	
 	Dice(Colour c) : colour(c), face(0) {};
-	void Roll();
+	void roll();
 };
 
 std::ostream& operator<<(std::ostream&, Dice&);

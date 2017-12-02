@@ -2,14 +2,23 @@
 #define _ROLLOFDICE_H
 
 #include "Dice.h"
+#include <vector>
 
 struct RollOfDice {
-	Dice[] allDices;
+	std::vector<Dice> allDices;
 	
 	RollOfDice(int numberOfDice);
-	void Roll();
-	operator int() const;
+	void roll();
 	
+	operator int() const{
+		int total = 0;
+	
+		for (int i=0; i<allDices.size(); ++i) {
+			total += allDices[i].face;
+		}
+		
+		return total;
+	}
 };
 
 #endif

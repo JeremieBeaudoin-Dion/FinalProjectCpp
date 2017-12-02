@@ -9,6 +9,8 @@ int main(int argc, char** argv) {
 	Colour r = Colour::RED;
 	Dice d(r);
 	
+	d.roll();
+	
 	std::cout << d << std::endl;
 	
 	return 0;
