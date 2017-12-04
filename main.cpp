@@ -1,6 +1,7 @@
 #include <iostream>
 #include "RandomDice.h"
 #include "RollOfDice.h"
+#include "Colour.h"
 #include "Dice.h"
 #include "QwintoRow.h"
 
@@ -51,14 +52,21 @@ void testDice() {
 /**
  * A test that tests QwintoRow
  */
-void testQwintoRow) {
-	QwintoRow<RED> row; RollOfDice rd0,rd1,rd2,rd3;
-	row[0] = rd0;
-	row[1] = rd1;
-	row[2] = rd2;
-	row[3] = rd3;
-
-	std::cout<<row <<std::endl;
+void testQwintoRow() {
+	Colour r = Colour::BLUE;
+        QwintoRow<Colour::RED> row; 
+ 	RollOfDice rd0(3),rd1(3),rd2(2),rd3(1),rd4(3),rd5(3),rd6(2),rd7(1),rd8(3),rd9(2);	
+ 	rd0.roll();
+	row[0]=rd0;
+	row[1]=rd1;
+	row[2]=rd2;
+	row[3]=rd3;
+	row[4]=rd4;
+	row[5]=rd5;
+	row[6]=rd6;
+	row[7]=rd7;
+	row[8]=rd8;
+	std::cout<<row<<std::endl;
 }
 
 
@@ -91,6 +99,11 @@ void doTestAccordingToStringValue(std::string testValue) {
 	
 	if (testValue == "TEST_ROLLOFDICE") {
 		testRollOfDice();	
+		return;
+	}
+
+       if (testValue == "TEST_ROW"){
+		testQwintoRow();
 		return;
 	}
 };
