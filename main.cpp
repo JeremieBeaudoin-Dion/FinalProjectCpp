@@ -2,13 +2,14 @@
 #include "RandomDice.h"
 #include "RollOfDice.h"
 #include "Dice.h"
+#include "QwintoRow.h"
 
 /**
  * PLAYING DICE
  *
  * A project by 
  * Alexandre Fawcett - 7011967
- * Jérémie Beaudoin-Dion - 8876521
+ * JÃ©rÃ©mie Beaudoin-Dion - 8876521
  *
  * This program lets the player play a game of
  * Qwinto or Qwixx.
@@ -46,6 +47,20 @@ void testDice() {
 	
 	std::cout << d1 << std::endl;
 }
+
+/**
+ * A test that tests QwintoRow
+ */
+void testQwintoRow) {
+	QwintoRow<RED> row; RollOfDice rd0,rd1,rd2,rd3;
+	row[0] = rd0;
+	row[1] = rd1;
+	row[2] = rd2;
+	row[3] = rd3;
+
+	std::cout<<row <<std::endl;
+}
+
 
 /**
  * A test that uses different rollOfDice
