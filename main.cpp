@@ -87,6 +87,14 @@ void testQwintoScoreSheet(){
 
 	QwintoScoreSheet qss("Alex");
 
+	std::cout << not(qss);
+
+	std::vector<Dice> d;
+    d.push_back(Dice(Colour::YELLOW));
+ 	RollOfDice rd(d);
+ 	rd.roll();
+ 	if (qss.score(rd,Colour::YELLOW,0))
+ 		qss.setTotal();
 	std::cout<< qss << std::endl;
 
 }

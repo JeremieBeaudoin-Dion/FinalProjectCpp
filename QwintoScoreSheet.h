@@ -16,11 +16,15 @@ class QwintoScoreSheet: public ScoreSheet{
 
 		int calcTotal();
 
-		bool operator !();
+		bool score(const RollOfDice rOD, const Colour c, int position);
+
+		bool operator not();
 
 	protected:
 
-		bool validate(const RollOfDice*, const Colour*, int position);
+		bool validate(const RollOfDice rOD, const Colour c, int position);
+
+
 
 };
 
