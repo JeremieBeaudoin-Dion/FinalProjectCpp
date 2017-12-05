@@ -6,6 +6,7 @@ int& QwintoRow<T>::operator[](int index){
 	if(validate(qR[index])){
 	return qR[index];
 	}
+	return 0;
 
 }
 template <int T>

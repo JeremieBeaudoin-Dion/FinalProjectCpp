@@ -1,30 +1,28 @@
 #ifndef _SCORESHEET_H
 #define _SCORESHEET_H
 
-#include<RollOfDice.h>
+#include "RollOfDice.h" 
+#include "Colour.h"
 #include<iostream>
 
 class ScoreSheet{
 	
-	protected:
-		string name; //Nom du joueur
+	public:
+		std::string name; //Nom du joueur
 		int failedThrow, totalScore; //Donnes pour les lancers echouers et son score total
 
-		virtual bool validate() = 0;
+		ScoreSheet(std::string n):name(n),failedThrow(0),totalScore(0){};
+
+		virtual bool validate(const RollOfDice*, const Colour*, int position) = 0;
 
 		virtual int calcTotal() = 0;
 
-	public:
+		bool score(const RollOfDice*, const Colour*, int position = -1){};
 
-		ScoreSheet(string n):(name(n),failedThrow(0),totalScore(0));
+		int setTotal(){};
 
-		virtual bool score(const RollOfDice*, const Colour*, int position = -1);
-
-		virtual int setTotal();
-
-		virtual bool operator not();
-
-		virtual std::stream& operator<<(std::ostream&, const ScoreSheet&);
+		virtual bool operator!(){};
 };
+	//std::ostream& operator<<(std::ostream&, ScoreSheet);
 
 #endif

@@ -31,6 +31,7 @@ int& QwintoRow<T>::operator[](int index){
         //if(validate(qR[index])){
         return qR[index];
         //}
+        //else return(int x=0);
 	
 
 }

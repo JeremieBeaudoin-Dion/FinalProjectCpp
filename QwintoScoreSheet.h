@@ -1,35 +1,29 @@
 #ifndef _QWINTOSORESHEET_H
 #define _QWINTOSORESHEET_H
-
-#include<ScoreSheet.h>
+#include "ScoreSheet.h"
+#include "QwintoRow.h"
+#include "Colour.h"
 #include<iostream>
 
-class QwintoScoreSheet{
-	
-
+class QwintoScoreSheet: public ScoreSheet{
 	public:
 
-		QwintoRow<RED> red; 
-		QwintoRow<BLUE> blue;
-		QwintoRow<YELLOW> yellow;
+		QwintoRow<Colour::RED> red; 
+		QwintoRow<Colour::BLUE> blue;
+		QwintoRow<Colour::YELLOW> yellow;
 
-		bool validate();
+		QwintoScoreSheet(std::string n):ScoreSheet(n){};
 
 		int calcTotal();
 
-		std::ostream& operator<<(std::ostream&, const ScoreSheet&);
+		bool operator !();
 
-	public:
+	protected:
 
-		ScoreSheet(string n):(name(n),failedThrow(0),totalScore(0));
+		bool validate(const RollOfDice*, const Colour*, int position);
 
-		bool score(const RollOfDice*, const Colour*, int position = -1);
-
-		int setTotal();
-
-		bool operator not();
-
-		std::ostream& operator<<(std::ostream&, const ScoreSheet&);
 };
+
+	std::ostream& operator<<(std::ostream& os, QwintoScoreSheet& qSS);
 
 #endif

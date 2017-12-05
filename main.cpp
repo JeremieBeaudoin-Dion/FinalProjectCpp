@@ -3,7 +3,8 @@
 #include "RollOfDice.h"
 #include "Colour.h"
 #include "Dice.h"
-#include "QwintoRow.h"
+//#include "QwintoRow.h"
+#include "QwintoScoreSheet.h"
 
 /**
  * PLAYING DICE
@@ -81,6 +82,14 @@ void testRollOfDice() {
 	
 	// std::cout << rollOfDice1 << std::endl;
 }
+
+void testQwintoScoreSheet(){
+
+	QwintoScoreSheet qss("Alex");
+
+	std::cout<< qss << std::endl;
+
+}
  
 /**
  * Different available tests
@@ -101,6 +110,13 @@ void doTestAccordingToStringValue(std::string testValue) {
 		testQwintoRow();
 		return;
 	}
+
+	 if (testValue == "TEST_SCORESHEET"){
+		testQwintoScoreSheet();
+		return;
+	}
+
+
 };
 
 int main(int argc, char** argv) {
