@@ -53,19 +53,12 @@ void testDice() {
  * A test that tests QwintoRow
  */
 void testQwintoRow() {
-	Colour r = Colour::BLUE;
-        QwintoRow<Colour::RED> row; 
- 	RollOfDice rd0(3),rd1(3),rd2(2),rd3(1),rd4(3),rd5(3),rd6(2),rd7(1),rd8(3),rd9(2);	
- 	rd0.roll();
-	row[0]=rd0;
-	row[1]=rd1;
-	row[2]=rd2;
-	row[3]=rd3;
-	row[4]=rd4;
-	row[5]=rd5;
-	row[6]=rd6;
-	row[7]=rd7;
-	row[8]=rd8;
+    QwintoRow<Colour::BLUE> row; 
+    std::vector<Dice> d;
+    d.push_back(Dice(Colour::YELLOW));
+ 	RollOfDice rd(d);
+ 	rd.roll();	
+	row[0]=rd;
 	std::cout<<row<<std::endl;
 }
 
@@ -74,17 +67,19 @@ void testQwintoRow() {
  * A test that uses different rollOfDice
  */
 void testRollOfDice() {
-	RollOfDice rollOfDice(3);
+	std::vector<Dice> d;
+    d.push_back(Dice(Colour::YELLOW));
+ 	RollOfDice rollOfDice(d);	
 	
 	rollOfDice.roll();
 	
 	std::cout << rollOfDice << std::endl;
 	
-	RollOfDice rollOfDice1(5);
+	// RollOfDice rollOfDice(5);
 	
-	rollOfDice1.roll();
+	// rollOfDice1.roll();
 	
-	std::cout << rollOfDice1 << std::endl;
+	// std::cout << rollOfDice1 << std::endl;
 }
  
 /**

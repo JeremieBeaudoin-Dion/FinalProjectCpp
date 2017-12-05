@@ -13,7 +13,7 @@ class QwintoPlayer::Player{
 		QwintoPlayer(string s):qSS(s);
 		
 		void inputBeforeRoll(RollOfDice& rOD);
-		void inputAfterRoll(RollOfDice&) rOD;
+		void inputAfterRoll(RollOfDice& rOD);
 
 };
 

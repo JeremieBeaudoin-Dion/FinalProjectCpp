@@ -1,5 +1,6 @@
-#include<QwintoRow.h>
-template <Colour T>
+#include "QwintoRow.h"
+
+template<int T> 
 int& QwintoRow<T>::operator[](int index){
 	
 	if(validate(qR[index])){
@@ -7,15 +8,15 @@ int& QwintoRow<T>::operator[](int index){
 	}
 
 }
-
-bool QwintoRow::validate(int value){
+template <int T>
+bool QwintoRow<T>::validate(int value){
 	
 	if(value!=0) return true;
 	else return false;
 
 }
-
-std::ostream& operator<<(std::ostream& os, const QwintoRow<T>& qwin)_{
+template <int T>
+std::ostream& operator<<(std::ostream& os,QwintoRow<T>& qR){
 
 	auto colour_as_integer = static_cast<int>(T);
 	
@@ -38,5 +39,7 @@ std::ostream& operator<<(std::ostream& os, const QwintoRow<T>& qwin)_{
 			
 		
 	}
+
+	return os;
 
 }

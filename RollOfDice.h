@@ -12,7 +12,8 @@
 struct RollOfDice {
 	std::vector<Dice> allDices;
 	
-	RollOfDice(int numberOfDice);
+	//RollOfDice(int numberOfDice);
+	RollOfDice(std::vector<Dice>);
 	RollOfDice(Dice, Dice);
 	void roll();
 	RollOfDice& pair(Dice, Dice);

@@ -6,23 +6,25 @@
  * Basic constructor for a RollOfDice that stores a number 
  * of die depending on a int value.
  */
-RollOfDice::RollOfDice(int numberOfDice){
+// RollOfDice::RollOfDice(int numberOfDice){
 	
-	for (int i=0; i<numberOfDice; ++i) {
+// 	for (int i=0; i<numberOfDice; ++i) {
 		
-		Colour desiredColour;
+// 		Colour desiredColour;
 		
-		if (i == 5) {
-			desiredColour = Colour::WHITE;
-		} else {
-			desiredColour = static_cast<Colour>(i);
-		}
+// 		if (i == 5) {
+// 			desiredColour = Colour::WHITE;
+// 		} else {
+// 			desiredColour = static_cast<Colour>(i);
+// 		}
 		
-		allDices.push_back(Dice(desiredColour));
-	}
+// 		allDices.push_back(Dice(desiredColour));
+// 	}
 	
-}
+// }
 
+
+RollOfDice::RollOfDice(std::vector<Dice> d):allDices(d){};
 /**
  * Helper constructor for the pair() method
  */

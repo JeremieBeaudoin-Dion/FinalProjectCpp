@@ -10,7 +10,7 @@ class QwintoRow{
 	
 	public:
 
-		int qR[9];
+		int qR[9]={0};
 
 		int& operator[](int index);
 
@@ -37,7 +37,7 @@ int& QwintoRow<T>::operator[](int index){
 template <Colour T>
 bool QwintoRow<T>::validate(int value){
 
-        if(value!=0) return true;
+        if(value==0) return true;
         else return false;
 
 }
@@ -50,22 +50,117 @@ std::ostream& operator<<(std::ostream& os,QwintoRow<T>& qR){
         switch(colour_as_integer) {
                 
                 case 0:
-                        os << "Red                 "<< ((qR[0]==0)?' ':qR[0]) << '|' << ((qR[1]==0)?' ':qR[1]) << '%' << ((qR[2]==0)?' ':qR[2]) << '%' << ((qR[3]==0)?' ':qR[3]); os << "|XX| "<< ((qR[4]==0)?' ':qR[4]) << '%' << ((qR[5]==0)?' ':qR[5]) << '%' << ((qR[6]==0)?' ':qR[6]) << '|' << ((qR[7]==0)?' ':qR[7]) << '|' << ((qR[8]==0)?' ':qR[8]);os << '|' << std::endl;
-                        os <<"                      ----------------------------------" <<std::endl;
+                os << "Red                 |";
+                for(int i=0;i<9;i++){
+
+                        if(qR[i]==0) os<<" ";
+                        else {os<<qR[i];}
+
+                        switch ( i ) {
+
+                                case 0:
+                                os << '%';
+                                break;
+                                case 1:
+                                os << '%';
+                                break;
+                                case 2:
+                                os << "XX";
+                                break;
+                                case 3:
+                                os << '%';
+                                break;
+                                case 4:
+                                os << '%';
+                                break;
+                                default:
+                                os <<'|';
+                                break;
+
+                        }
+
+
+                }
+                os <<std::endl<<"                      ----------------------------------" <<std::endl;
                         break;
+
+                        //os << "Red                 "<< ((qR[0]==0)?' ':qR[0]) << '|' << char((qR[1]==0)?' ':qR[1]) << '%' << ((qR[2]==0)?' ':qR[2]) << '%' << ((qR[3]==0)?' ':qR[3]); os << "|XX| "<< ((qR[4]==0)?' ':qR[4]) << '%' << ((qR[5]==0)?' ':qR[5]) << '%' << ((qR[6]==0)?' ':qR[6]) << '|' << ((qR[7]==0)?' ':qR[7]) << '|' << ((qR[8]==0)?' ':qR[8]);os << '|' << std::endl;
+                        //os <<"                      ----------------------------------" <<std::endl;
+                        //break;
                 
                 case 1:
-                        os << "Yellow   "<< ((qR[0]==0)?' ':qR[0]) << '|' << ((qR[1]==0)?' ':qR[1]) << '|' << ((qR[2]==0)?' ':qR[2]) << '|' << ((qR[3]==0)?' ':qR[3]) << '|' << ((qR[4]==0)?' ':qR[4]);os << '|' << "|XX| "<< ((qR[5]==0)?' ':qR[5]) << '%' << ((qR[6]==0)?' ':qR[6]) << '%' << ((qR[7]==0)?' ':qR[7]) << '|' << ((qR[8]==0)?' ':qR[8]);os << '|' << std::endl;
-                        os <<"                  ----------------------------------" <<std::endl;
+
+                os << "Yellow             |";
+                for(int i=0;i<9;i++){
+
+                        if(qR[i]==0) os<<" ";
+                        else {os<<qR[i];}
+
+                        switch ( i ) {
+
+                                case 5:
+                                os << '%';
+                                break;
+                                case 6:
+                                os << '%';
+                                break;
+                                case 4:
+                                os << "XX";
+                                default:
+                                os <<'|';
+                                break;
+
+                        }
+
+
+                }
+                os <<std::endl<<"                      ----------------------------------" <<std::endl;
                         break;
+                        // os << "Yellow   "<< ((qR[0]==0)?' ':qR[0]) << '|' << ((qR[1]==0)?' ':qR[1]) << '|' << ((qR[2]==0)?' ':qR[2]) << '|' << ((qR[3]==0)?' ':qR[3]) << '|' << ((qR[4]==0)?' ':qR[4]);os << '|' << "|XX| "<< ((qR[5]==0)?' ':qR[5]) << '%' << ((qR[6]==0)?' ':qR[6]) << '%' << ((qR[7]==0)?' ':qR[7]) << '|' << ((qR[8]==0)?' ':qR[8]);os << '|' << std::endl;
+                        // os <<"                  ----------------------------------" <<std::endl;
+                        // break;
                         
                 case 2:
-                        os << "Blue     "<< ((qR[0]==0)?' ':qR[0]) << '|' << ((qR[1]==0)?' ':qR[1]) << '|' << ((qR[2]==0)?' ':qR[2]) << '%' << ((qR[3]==0)?' ':qR[3]) << '%' << ((qR[4]==0)?' ':qR[4]);os << "|XX| "<< ((qR[5]==0)?' ':qR[5]) << '|' << ((qR[6]==0)?' ':qR[6]) << '|' << ((qR[7]==0)?' ':qR[7]) << '%' << ((qR[8]==0)?' ':qR[8]);os << '%' << std::endl;
-                        os <<"          ----------------------------------" <<std::endl;
+                os << "Blue    |";
+                for(int i=0;i<9;i++){
+
+                        if(qR[i]==0) os<<" ";
+                        else {os<<qR[i];}
+
+                        switch ( i ) {
+
+                                case 1:
+                                os << '%';
+                                break;
+                                case 2:
+                                os << '%';
+                                break;
+                                case 3:
+                                os << "XX";
+                                break;
+                                case 7:
+                                os << '%';
+                                break;
+                                case 8:
+                                os << '%';
+                                break;
+                                default:
+                                os <<'|';
+                                break;
+
+                        }
+
+
+                }
+                os <<std::endl<<"                      ----------------------------------" <<std::endl;
                         break;
-                        
+                        // os << "Blue     "<< ((qR[0]==0)?' ':qR[0]) << '|' << ((qR[1]==0)?' ':qR[1]) << '|' << ((qR[2]==0)?' ':qR[2]) << '%' << ((qR[3]==0)?' ':qR[3]) << '%' << ((qR[4]==0)?' ':qR[4]);os << "|XX| "<< ((qR[5]==0)?' ':qR[5]) << '|' << ((qR[6]==0)?' ':qR[6]) << '|' << ((qR[7]==0)?' ':qR[7]) << '%' << ((qR[8]==0)?' ':qR[8]);os << '%' << std::endl;
+                        // os <<"          ----------------------------------" <<std::endl;
+                        // break;
+                  
                 
         }
+
 
         return os;
 
