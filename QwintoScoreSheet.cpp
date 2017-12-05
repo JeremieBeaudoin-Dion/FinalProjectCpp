@@ -12,6 +12,7 @@ int QwintoScoreSheet::calcTotal(){
 
 //Premiere etape est de compter le nombre de case remplie dans les rangee
 	int remplieR=0,remplieB=0,remplieJ=0;
+	totalScore=0;
 
 	for(int i=0;i<9;i++){
 
@@ -60,7 +61,7 @@ int QwintoScoreSheet::calcTotal(){
 
 }
 
-bool QwintoScoreSheet::operator not(){
+bool QwintoScoreSheet::operator!(){
 
 	int comp = 0;
 
@@ -91,6 +92,8 @@ bool QwintoScoreSheet::validate(const RollOfDice rOD, const Colour c, int positi
 
 	bool goodColor = false;
 	bool goodColumn = false;
+	bool croissant = true;
+	bool superposition = true;
 	//Est-ce que la couleur choisie de la rangee est valide avec les des roules?
 	for (auto &i: rOD.allDices){
    		if(i.colour == c) goodColor = true;
@@ -100,18 +103,147 @@ bool QwintoScoreSheet::validate(const RollOfDice rOD, const Colour c, int positi
 
 		case Colour::RED:
 			goodColumn = red.validate(position);
+			for(int i=0;i<position;i++){
+				if(red[i]>rOD){
+					croissant = false;
+					break;
+				}
+			}
+				switch(position){
+
+					case 0:
+						if(yellow[1] == rOD || blue[2] == rOD){
+							superposition = false;
+							break;
+						}
+					case 1:
+						if(yellow[2] == rOD || blue[3] == rOD){
+							superposition = false;
+							break;
+						}
+
+					case 2:
+						if(yellow[4] == rOD){
+							superposition = false;
+							break;
+						}
+					case 3:
+						if(blue[5] == rOD){
+							superposition = false;
+							break;
+						}
+					default:
+						if(yellow[position+1] == rOD || blue[position+2] == rOD){
+							superposition = false;
+							break;
+						}
+				
+
+				}
+			
 			break;
 
 		case Colour::YELLOW:
 			goodColumn = yellow.validate(position);
+			for(int i=0;i<position;i++){
+				if(yellow[i]>rOD){
+					croissant = false;
+					break;
+				}
+			}
+
+			switch(position){
+
+					case 0:
+						if(blue[1] == rOD){
+							superposition = false;
+							break;
+						}
+					case 1:
+						if(blue[2] == rOD || red[0] == rOD){
+							superposition = false;
+							break;
+						}
+
+					case 2:
+						if(blue[3] == rOD || red[1] == rOD){
+							superposition = false;
+							break;
+						}
+					case 3:
+						if(red[2] == rOD){
+							superposition = false;
+							break;
+						}
+					case 4:
+						if(blue[4] == rOD){
+							superposition = false;
+							break;
+						}
+					default:
+						if(blue[position+1] == rOD || red[position-1] == rOD){
+							superposition = false;
+							break;
+						}
+				
+
+				}
+
 			break;
 
 		case Colour::BLUE:
 			goodColumn = blue.validate(position);
+			for(int i=0;i<position;i++){
+				if(blue[i]>rOD){
+					croissant = false;
+					break;
+				}
+			}
+
+			switch(position){
+
+					case 0:
+						break;
+
+					case 1:
+						if(yellow[0] == rOD){
+							superposition = false;
+							break;
+						}
+
+					case 2:
+						if(yellow[1] == rOD || red[0] == rOD){
+							superposition = false;
+							break;
+						}
+					case 3:
+						if(yellow[2] == rOD || red[1] == rOD){
+							superposition = false;
+							break;
+						}
+					case 4:
+						if(yellow[4] == rOD){
+							superposition = false;
+							break;
+						}
+
+					case 5:
+						if(red[3] == rOD){
+							superposition = false;
+							break;
+						}
+					default:
+						if(yellow[position-1] == rOD || red[position-2] == rOD){
+							superposition = false;
+							break;
+						}
+				
+
+				}
 			break;
 	}
 
-	return (goodColumn && goodColor);
+	return (goodColumn && goodColor && superposition && croissant);
 }
 
 bool QwintoScoreSheet::score(const RollOfDice rOD, const Colour c, int position){
@@ -133,6 +265,11 @@ bool QwintoScoreSheet::score(const RollOfDice rOD, const Colour c, int position)
 				break;
 		}
 
+		return true;
+	}
+	else{
+		failedThrow++;
+		return false;
 	}
 }
 
@@ -144,5 +281,6 @@ std::ostream& operator<<(std::ostream& os, QwintoScoreSheet& qSS){
 	os << qSS.yellow <<std::endl;
 	os << qSS.blue << std::endl;
 
+	return os;
 
 }

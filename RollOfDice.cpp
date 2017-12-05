@@ -1,7 +1,7 @@
 #include "RollOfDice.h"
 #include "Dice.h"
 #include "Colour.h"
-
+#include <iostream>
 /**
  * Basic constructor for a RollOfDice that stores a number 
  * of die depending on a int value.
@@ -49,10 +49,12 @@ RollOfDice& RollOfDice::pair(Dice d1, Dice d2) {
 	return *(new RollOfDice(d1, d2));
 }
 
-std::ostream& operator<<(std::ostream& os, RollOfDice& rod) {
-	
-	for (int i=0; i<rod.allDices.size(); ++i) {
-		os << rod.allDices[i];
+std::ostream& operator<<(std::ostream& os,const RollOfDice& rod) {
+
+	for (auto i=0;i<rod.allDices.size();i++) {
+		os << rod.allDices[i] << std::endl;
 	}
-	
+	//os << std::endl;
+
+	return os;
 }

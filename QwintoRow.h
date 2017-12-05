@@ -38,7 +38,7 @@ int& QwintoRow<T>::operator[](int index){
 template <Colour T>
 bool QwintoRow<T>::validate(int value){
 
-        if(value==0) return true;
+        if(qR[value]==0) return true;
         else return false;
 
 }
@@ -51,7 +51,7 @@ std::ostream& operator<<(std::ostream& os,QwintoRow<T>& qR){
         switch(colour_as_integer) {
                 
                 case 0:
-                os << "Red                 |";
+                os << "Red          |";
                 for(int i=0;i<9;i++){
 
                         if(qR[i]==0) os<<" ";
@@ -66,7 +66,7 @@ std::ostream& operator<<(std::ostream& os,QwintoRow<T>& qR){
                                 os << '%';
                                 break;
                                 case 2:
-                                os << "XX";
+                                os << "|XX|";
                                 break;
                                 case 3:
                                 os << '%';
@@ -82,7 +82,7 @@ std::ostream& operator<<(std::ostream& os,QwintoRow<T>& qR){
 
 
                 }
-                os <<std::endl<<"                      ----------------------------------" <<std::endl;
+                os <<std::endl<<"           ----------------------------------" <<std::endl;
                         break;
 
                         //os << "Red                 "<< ((qR[0]==0)?' ':qR[0]) << '|' << char((qR[1]==0)?' ':qR[1]) << '%' << ((qR[2]==0)?' ':qR[2]) << '%' << ((qR[3]==0)?' ':qR[3]); os << "|XX| "<< ((qR[4]==0)?' ':qR[4]) << '%' << ((qR[5]==0)?' ':qR[5]) << '%' << ((qR[6]==0)?' ':qR[6]) << '|' << ((qR[7]==0)?' ':qR[7]) << '|' << ((qR[8]==0)?' ':qR[8]);os << '|' << std::endl;
@@ -91,7 +91,7 @@ std::ostream& operator<<(std::ostream& os,QwintoRow<T>& qR){
                 
                 case 1:
 
-                os << "Yellow             |";
+                os << "Yellow     |";
                 for(int i=0;i<9;i++){
 
                         if(qR[i]==0) os<<" ";
@@ -106,7 +106,7 @@ std::ostream& operator<<(std::ostream& os,QwintoRow<T>& qR){
                                 os << '%';
                                 break;
                                 case 4:
-                                os << "XX";
+                                os << "|XX|";
                                 default:
                                 os <<'|';
                                 break;
@@ -115,14 +115,14 @@ std::ostream& operator<<(std::ostream& os,QwintoRow<T>& qR){
 
 
                 }
-                os <<std::endl<<"                      ----------------------------------" <<std::endl;
+                os <<std::endl<<"         ----------------------------------" <<std::endl;
                         break;
                         // os << "Yellow   "<< ((qR[0]==0)?' ':qR[0]) << '|' << ((qR[1]==0)?' ':qR[1]) << '|' << ((qR[2]==0)?' ':qR[2]) << '|' << ((qR[3]==0)?' ':qR[3]) << '|' << ((qR[4]==0)?' ':qR[4]);os << '|' << "|XX| "<< ((qR[5]==0)?' ':qR[5]) << '%' << ((qR[6]==0)?' ':qR[6]) << '%' << ((qR[7]==0)?' ':qR[7]) << '|' << ((qR[8]==0)?' ':qR[8]);os << '|' << std::endl;
                         // os <<"                  ----------------------------------" <<std::endl;
                         // break;
                         
                 case 2:
-                os << "Blue    |";
+                os << "Blue     |";
                 for(int i=0;i<9;i++){
 
                         if(qR[i]==0) os<<" ";
@@ -137,7 +137,7 @@ std::ostream& operator<<(std::ostream& os,QwintoRow<T>& qR){
                                 os << '%';
                                 break;
                                 case 3:
-                                os << "XX";
+                                os << "|XX|";
                                 break;
                                 case 7:
                                 os << '%';
@@ -153,7 +153,7 @@ std::ostream& operator<<(std::ostream& os,QwintoRow<T>& qR){
 
 
                 }
-                os <<std::endl<<"                      ----------------------------------" <<std::endl;
+                os <<std::endl<<"       ----------------------------------" <<std::endl;
                         break;
                         // os << "Blue     "<< ((qR[0]==0)?' ':qR[0]) << '|' << ((qR[1]==0)?' ':qR[1]) << '|' << ((qR[2]==0)?' ':qR[2]) << '%' << ((qR[3]==0)?' ':qR[3]) << '%' << ((qR[4]==0)?' ':qR[4]);os << "|XX| "<< ((qR[5]==0)?' ':qR[5]) << '|' << ((qR[6]==0)?' ':qR[6]) << '|' << ((qR[7]==0)?' ':qR[7]) << '%' << ((qR[8]==0)?' ':qR[8]);os << '%' << std::endl;
                         // os <<"          ----------------------------------" <<std::endl;

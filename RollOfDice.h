@@ -3,7 +3,7 @@
 
 #include "Dice.h"
 #include <vector>
-
+#include <iostream>
 /**
  * A RollOfDice is simply a container that has a certain amount
  * of die. When the method roll() is called, each dice is rolled
@@ -12,7 +12,7 @@
 struct RollOfDice {
 	std::vector<Dice> allDices;
 	
-	//RollOfDice(int numberOfDice);
+	RollOfDice():allDices(){};
 	RollOfDice(std::vector<Dice>);
 	RollOfDice(Dice, Dice);
 	void roll();
@@ -29,6 +29,6 @@ struct RollOfDice {
 	}
 };
 
-std::ostream& operator<<(std::ostream&, RollOfDice&);
+std::ostream& operator<<(std::ostream&,const RollOfDice&);
 
 #endif

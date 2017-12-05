@@ -1,6 +1,8 @@
 #include "Player.h"
-#include "RollOfDice.h"
+#include "QwintoPlayer.h"
+//#include "RollOfDice.h"
 #include "Dice.h"
+#include <string>
 #include<vector>
 void QwintoPlayer::inputBeforeRoll(RollOfDice& rOD)
 {
@@ -8,30 +10,58 @@ void QwintoPlayer::inputBeforeRoll(RollOfDice& rOD)
 	//Premiere Etape est de demander au joueur de choisir ses des a rouler
 
 	std::cout<<"C'est a votre tour de jouer. Lorsque demande, repondez <<oui>> si vous voulez jouer le de";
-	std::cout<<" en question, et <non> pour ne pas le rouler" << endl;
-	std::string rep;
-	
-	std::vector<Dice> d;
-
-	std::cout<<"Voulez-vous jouer le de Rouge?" <<endl;
-	while(rep!="oui" || rep!="non"){
+	std::cout<<" en question, et <non> pour ne pas le rouler" << std::endl;
+	std::string rep="";
+	bool done=true;
+	std::cout<<"Voulez-vous jouer le de Rouge?" << std::endl;
+	while(done){
 	std::cin>>rep;
-	if(rep=="oui") d.push_back(Dice(Colour::RED));
+	if(rep =="oui") rOD.allDices.push_back(Dice(Colour::RED)); done=false;
+	if(rep == "non") done=false;
+	}
+	done = true;
+	std::cout<<"Voulez-vous jouer le de Bleue?" << std::endl;
+    while(done){
+	std::cin>>rep;
+	if(rep =="oui") rOD.allDices.push_back(Dice(Colour::BLUE)); done=false;
+	if(rep == "non") done=false;
+	}
+	done = true;
+	std::cout<<"Voulez-vous jouer le de Jaune?" << std::endl;
+    while(done){
+	std::cin>>rep;
+	if(rep =="oui") rOD.allDices.push_back(Dice(Colour::YELLOW)); done=false;
+	if(rep == "non") done=false;
 	}
 
-	std::cout<<"Voulez-vous jouer le de Bleue?" <<endl;
-    while(rep!="oui" || rep!="non"){
-    std::cin >>rep;
-    if(rep=="oui") d.push_back(Dice(Colour::BLUE));
-	}
-
-	std::cout<<"Voulez-vous jouer le de Jaune?" <<endl;
-    while(rep!="oui" || rep!="non"){
-    std::cin >>rep;
-    if(rep=="oui") d.push_back(Dice(Colour::YELLOW));
-	}
-    rOD(d);
-	std::cout<<rOD;
+    //RollOfDice rd(d);
+    //rOD.allDices = rd.allDices;
+	
 }
 
-void QwintoPlayer::inputAfterRoll(RollOfDice& rOD){ }
+void QwintoPlayer::inputAfterRoll(RollOfDice& rOD){
+
+	std::string rep;
+	Colour c;
+	int pos;
+	bool done = true;
+	std::cout<<"Dans quelle couleure de range voulez-vous rentrer votre point? Repondez <<rouge>>, <<jaune>> ou <<bleu>>." << std::endl;
+	while(done)
+	{
+		std::cin >> rep;
+		if(rep.compare("bleu")==1) c = Colour::BLUE; done = false;
+		if(rep.compare("jaune")==1) c = Colour::YELLOW; done = false;
+		if(rep.compare("rouge")==1) c = Colour::RED; done = false;
+	}
+
+	done = true;
+	std::cout<<"Dans quelle colonne voulez-vous rentrer votre point? Repondez un entier entre 1 et 9." << std::endl;
+	while(done)
+	{
+		std::cin >> pos;
+		if(pos>=1 && pos<=9) pos -= pos -1; done = false;
+	}
+
+	if(!qSS.score(rOD,c,pos)) std::cout << "Vous avez echoue votre essai" << std::endl;
+
+}

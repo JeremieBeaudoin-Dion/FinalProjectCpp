@@ -17,6 +17,6 @@ struct Dice {
 	void roll();
 };
 
-std::ostream& operator<<(std::ostream&, Dice&);
+std::ostream& operator<<(std::ostream&, const Dice&);
 
 #endif

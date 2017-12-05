@@ -11,7 +11,7 @@ void Dice::roll() {
 	face = RandomDice::getValue();
 }
 
-std::ostream& operator<< (std::ostream& os, Dice& d) {
+std::ostream& operator<< (std::ostream& os, const Dice& d) {
 	auto colour_as_integer = static_cast<int>(d.colour);
 	
 	switch(colour_as_integer) {
