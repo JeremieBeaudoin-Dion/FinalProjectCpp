@@ -121,7 +121,7 @@ void testQwintoPlayer(){
 
 	QwintoPlayer qA("Alex");
  	RollOfDice rd;
- 	while(!(!qA.qSS)){
+ 	while(!(qA.qSS)){
  		RollOfDice rd;
  		qA.inputBeforeRoll(rd);
  		//std::cout<<"BEFOREROLLDONE"<<std::endl;

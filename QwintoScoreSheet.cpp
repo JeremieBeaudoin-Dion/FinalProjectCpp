@@ -65,7 +65,7 @@ bool QwintoScoreSheet::operator!(){
 
 	int comp = 0;
 
-	if(failedThrow==4) return true;
+	if(failedThrow==4) return false;
 
 	int remplieR=0,remplieB=0,remplieJ=0;
 
@@ -83,8 +83,8 @@ bool QwintoScoreSheet::operator!(){
 
 	if (remplieJ==9) comp++;
 	
-	if(comp>=2) return true;
-	else return false;
+	if(comp>=2) return false;
+	else return true;
 
 }
 
@@ -94,19 +94,23 @@ bool QwintoScoreSheet::validate(const RollOfDice rOD, const Colour c, int positi
 	bool goodColumn = false;
 	bool croissant = true;
 	bool superposition = true;
+
+	std::cout << rOD << std::endl;
+	std::cout << static_cast<int>(c) << std::endl;
+	std::cout << (int)position << std::endl;
 	//Est-ce que la couleur choisie de la rangee est valide avec les des roules?
-	for (auto &i: rOD.allDices){
-   		if(i.colour == c) goodColor = true;
+	for (auto i=0;i<rOD.allDices.size();i++) {
+		if(static_cast<int>(rOD.allDices[i].colour) == static_cast<int>(c)) goodColor = true; break;
 	}
 
-	switch(c){
+	switch(static_cast<int>(c)){
 
-		case Colour::RED:
+		case 0:
 			goodColumn = red.validate(position);
-			for(int i=0;i<position;i++){
+			for(int i=0;i<=position;i++){
 				if(red[i]>rOD){
 					croissant = false;
-					break;
+					//break;
 				}
 			}
 				switch(position){
@@ -143,12 +147,12 @@ bool QwintoScoreSheet::validate(const RollOfDice rOD, const Colour c, int positi
 			
 			break;
 
-		case Colour::YELLOW:
+		case 1:
 			goodColumn = yellow.validate(position);
-			for(int i=0;i<position;i++){
+			for(int i=0;i<=position;i++){
 				if(yellow[i]>rOD){
 					croissant = false;
-					break;
+					//break;
 				}
 			}
 
@@ -191,12 +195,12 @@ bool QwintoScoreSheet::validate(const RollOfDice rOD, const Colour c, int positi
 
 			break;
 
-		case Colour::BLUE:
+		case 2:
 			goodColumn = blue.validate(position);
-			for(int i=0;i<position;i++){
+			for(int i=0;i<=position;i++){
 				if(blue[i]>rOD){
 					croissant = false;
-					break;
+					//break;
 				}
 			}
 
@@ -242,8 +246,13 @@ bool QwintoScoreSheet::validate(const RollOfDice rOD, const Colour c, int positi
 				}
 			break;
 	}
-
-	return (goodColumn && goodColor && superposition && croissant);
+	//std::cout<<"BEFORE COND"<< std::endl;
+	//std::cout << goodColor << std::endl;
+	//std::cout << goodColumn << std::endl;
+	//std::cout << croissant << std::endl;
+	//std::cout << superposition << std::endl;
+	if (goodColumn && goodColor && superposition && croissant) return true;
+	else return false;
 }
 
 bool QwintoScoreSheet::score(const RollOfDice rOD, const Colour c, int position){

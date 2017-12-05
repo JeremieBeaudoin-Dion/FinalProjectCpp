@@ -49,9 +49,9 @@ void QwintoPlayer::inputAfterRoll(RollOfDice& rOD){
 	while(done)
 	{
 		std::cin >> rep;
-		if(rep.compare("bleu")==1) c = Colour::BLUE; done = false;
-		if(rep.compare("jaune")==1) c = Colour::YELLOW; done = false;
-		if(rep.compare("rouge")==1) c = Colour::RED; done = false;
+		if(rep.compare("bleu")==0) c = Colour::BLUE; done = false;
+		if(rep.compare("jaune")==0) c = Colour::YELLOW; done = false;
+		if(rep.compare("rouge")==0) c = Colour::RED; done = false;
 	}
 
 	done = true;
@@ -59,9 +59,10 @@ void QwintoPlayer::inputAfterRoll(RollOfDice& rOD){
 	while(done)
 	{
 		std::cin >> pos;
-		if(pos>=1 && pos<=9) pos -= pos -1; done = false;
+		if(pos>=1 && pos<=9) pos -= 1; done = false;
 	}
-
+	//std::cout<< "position: " << pos<<std::endl;
+	//std::cout << "COLOUR " << static_cast<int>(c) << std::endl;
 	if(!qSS.score(rOD,c,pos)) std::cout << "Vous avez echoue votre essai" << std::endl;
 
 }
