@@ -59,7 +59,7 @@ int QwixxScoreSheet::entriesToPoints(int entries) {
     }
 }
 
-bool QwixxScoreSheet::score(const RollOfDice rOD, const Colour c) {
+bool QwixxScoreSheet::score(const RollOfDice rOD, const Colour c, int position) {
 
     if (validate(rOD, c)) {
         try {
@@ -111,11 +111,22 @@ bool QwixxScoreSheet::operator!() {
         numberOfLockedRows++;
     }
 
-    return (failedThrows > 3 || numberOfLockedRows > 1);
+    return (failedThrows < 3 || numberOfLockedRows < 1);
 }
 
-bool QwixxScoreSheet::validate(const RollOfDice rOD, const Colour c) {
+bool QwixxScoreSheet::validate(const RollOfDice rOD, const Colour c, int position) {
     return rOD.allDices.size() == 2;
 }
 
+std::ostream& operator<<(std::ostream& os, QwixxScoreSheet& qSS){
 
+    os << "Player Name:" << qSS.name << "         Score:" << qSS.calcTotal()<< std::endl;
+    os << qSS.red << std::endl;
+    os << qSS.yellow <<std::endl;
+    os << qSS.green << std::endl;
+    os << qSS.blue << std::endl;
+    os << "Failed throws: " << qSS.failedThrows << std::endl;
+
+    return os;
+
+}

@@ -58,29 +58,29 @@ void QwixxPlayer::inputAfterRoll(RollOfDice & rOD) {
                 if (rep == "oui" || rep == "non") done = false;
             }
 
-            Dice whiteDice = nullptr;
+            Dice * whiteDice = nullptr;
 
             if (rep == "oui") {
-                whiteDice = rOD.allDices[4];
+                whiteDice = &rOD.allDices[4];
             } else {
-                whiteDice = rOD.allDices[5];
+                whiteDice = &rOD.allDices[5];
             }
 
-            Dice colorDice = nullptr;
+            Dice * colorDice = nullptr;
             if (color == "red") {
-                colorDice = rOD.allDices[0];
+                colorDice = &rOD.allDices[0];
 
             } else if (color == "yellow") {
-                colorDice = rOD.allDices[1];
+                colorDice = &rOD.allDices[1];
 
             } else if (color == "blue") {
-                colorDice = rOD.allDices[2];
+                colorDice = &rOD.allDices[2];
 
             } else if (color == "green") {
-                colorDice = rOD.allDices[3];
+                colorDice = &rOD.allDices[3];
             }
 
-            if (!qSS.score(rOD.pair(whiteDice, colorDice), colorDice.colour)) {
+            if (!qSS.score(rOD.pair(*whiteDice, *colorDice), colorDice->colour)) {
                 std::cout << "Failed throw" << std::endl;
             }
 
@@ -113,21 +113,21 @@ void QwixxPlayer::inputAfterRoll(RollOfDice & rOD) {
                 if (color == "red" || color == "yellow" || color == "blue" || color == "green") done = false;
             }
 
-            Dice colorDice = nullptr;
+            Dice * colorDice = nullptr;
             if (color == "red") {
-                colorDice = rOD.allDices[0];
+                colorDice = &rOD.allDices[0];
 
             } else if (color == "yellow") {
-                colorDice = rOD.allDices[1];
+                colorDice = &rOD.allDices[1];
 
             } else if (color == "blue") {
-                colorDice = rOD.allDices[2];
+                colorDice = &rOD.allDices[2];
 
             } else if (color == "green") {
-                colorDice = rOD.allDices[3];
+                colorDice = &rOD.allDices[3];
             }
 
-            qSS.score(rOD.pair(rOD.allDices[4], rOD.allDices[5]), colorDice.colour);
+            qSS.score(rOD.pair(rOD.allDices[4], rOD.allDices[5]), colorDice->colour);
         }
 
     }

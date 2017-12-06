@@ -7,9 +7,9 @@
 
 template<class t, Colour c>
 class QwixxRow {
-    t holder;
 
 public:
+    t holder;
     bool locked;
 
     QwixxRow();
@@ -25,8 +25,8 @@ std::ostream& operator<<(std::ostream&, QwixxRow<t, c>&);
 #endif
 
 
-
-int QwixxRow::numberOfEntries() {
+template <class t, Colour c>
+int QwixxRow<t, c>::numberOfEntries() {
 
     int number = 0;
 
@@ -69,7 +69,7 @@ QwixxRow<t, c>::QwixxRow() : holder() {
 }
 
 template<class t, Colour c>
-QwixxRow& QwixxRow<t, c>::operator+=(const RollOfDice &rd) {
+QwixxRow<t, c>& QwixxRow<t, c>::operator+=(const RollOfDice &rd) {
 
     int point = static_cast<int>(rd);
 
