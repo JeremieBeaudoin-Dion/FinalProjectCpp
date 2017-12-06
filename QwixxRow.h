@@ -8,9 +8,10 @@
 template<class t, Colour c>
 class QwixxRow {
     t holder;
-    bool locked;
 
 public:
+    bool locked;
+
     QwixxRow();
 
     QwixxRow& operator+=(const RollOfDice& rd);
@@ -119,6 +120,9 @@ std::ostream& operator<<(std::ostream& os, QwixxRow<t, c>& qr) {
     for (auto number : qr.holder) {
         os << "|";
         if (number > -1) {
+            if (number < 10) {
+                os << " ";
+            }
             os << number;
         } else {
             os << "XX";

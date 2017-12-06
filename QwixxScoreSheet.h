@@ -1,10 +1,5 @@
-//
-// Created by Colocataire on 2017-12-05.
-//
-
-#ifndef UNTITLED2_QWIXXSCORESHEET_H
-#define UNTITLED2_QWIXXSCORESHEET_H
-
+#ifndef _QWIXXSCORESHEET_H
+#define _QWIXXSCORESHEET_H
 
 #include "ScoreSheet.h"
 #include "QwixxRow.h"
@@ -36,9 +31,7 @@ protected:
 
     bool validate(const RollOfDice rOD, const Colour c);
 
-
-
 };
 
 
-#endif //UNTITLED2_QWIXXSCORESHEET_H
+#endif //_QWIXXSCORESHEET_H

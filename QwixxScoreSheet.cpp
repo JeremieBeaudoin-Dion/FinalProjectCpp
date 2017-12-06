@@ -1,7 +1,3 @@
-//
-// Created by Colocataire on 2017-12-05.
-//
-
 #include "QwixxScoreSheet.h"
 
 int QwixxScoreSheet::calcTotal() {
@@ -87,15 +83,35 @@ bool QwixxScoreSheet::score(const RollOfDice rOD, const Colour c) {
                     return true;
             }
         } catch (std::string & s) {
+            failedThrows++;
             return false;
         }
     }
-
+    failedThrows++;
     return false;
 }
 
 bool QwixxScoreSheet::operator!() {
-    return false;
+
+    int numberOfLockedRows = 0;
+
+    if (red.locked) {
+        numberOfLockedRows++;
+    }
+
+    if (blue.locked) {
+        numberOfLockedRows++;
+    }
+
+    if (green.locked) {
+        numberOfLockedRows++;
+    }
+
+    if (yellow.locked) {
+        numberOfLockedRows++;
+    }
+
+    return (failedThrows > 3 || numberOfLockedRows > 1);
 }
 
 bool QwixxScoreSheet::validate(const RollOfDice rOD, const Colour c) {
