@@ -4,6 +4,7 @@
 #include "Dice.h"
 #include <vector>
 #include <iostream>
+
 /**
  * A RollOfDice is simply a container that has a certain amount
  * of die. When the method roll() is called, each dice is rolled

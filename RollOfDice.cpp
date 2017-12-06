@@ -49,6 +49,9 @@ RollOfDice& RollOfDice::pair(Dice d1, Dice d2) {
 	return *(new RollOfDice(d1, d2));
 }
 
+/**
+ * Prints all dices.
+ */
 std::ostream& operator<<(std::ostream& os,const RollOfDice& rod) {
 
 	for (auto i=0;i<rod.allDices.size();i++) {

@@ -1,5 +1,8 @@
 #include "QwixxScoreSheet.h"
 
+/**
+ * Retourne les points totaux du ScoreSheet.
+ */
 int QwixxScoreSheet::calcTotal() {
 
     int total = 0;
@@ -14,6 +17,9 @@ int QwixxScoreSheet::calcTotal() {
     return total;
 }
 
+/**
+ * Helper method for calcTotal()
+ */
 int QwixxScoreSheet::entriesToPoints(int entries) {
 
     switch (entries) {
@@ -59,6 +65,11 @@ int QwixxScoreSheet::entriesToPoints(int entries) {
     }
 }
 
+/**
+ * Score les points désirés dans la rangée désirée.
+ *
+ * Return false si cela donne un FAILEDTHROW
+ */
 bool QwixxScoreSheet::score(const RollOfDice rOD, const Colour c, int position) {
 
     if (validate(rOD, c)) {
@@ -91,6 +102,9 @@ bool QwixxScoreSheet::score(const RollOfDice rOD, const Colour c, int position) 
     return false;
 }
 
+/**
+ * Aide à définir si la partie est finie.
+ */
 bool QwixxScoreSheet::operator!() {
 
     int numberOfLockedRows = 0;
@@ -114,17 +128,43 @@ bool QwixxScoreSheet::operator!() {
     return (failedThrows < 3 || numberOfLockedRows < 1);
 }
 
+/**
+ * Retourne false si il est impossible de scorer les points désirés.
+ */
 bool QwixxScoreSheet::validate(const RollOfDice rOD, const Colour c, int position) {
     return rOD.allDices.size() == 2;
 }
 
+/**
+ * Imprime la scoresheet
+ *
+ * Exemple:
+ *
+ *
+ * Player name:
+ *  ------------------------------------
+ * Red | 2| 3| 4| 5| 6| 7| 8| 9|10|11|12| U
+ *  ------------------------------------
+ * Yellow | 2| 3| 4| 5| 6| 7| 8| 9|10|11|12| U
+ *  ------------------------------------
+ * Green |12|11|10| 9| 8| 7| 6| 5| 4| 3| 2| U
+ *  ------------------------------------
+ * Blue |12|11|10| 9| 8| 7| 6| 5| 4| 3| 2| U 
+ *  ------------------------------------
+ * Failed throws:
+ */
 std::ostream& operator<<(std::ostream& os, QwixxScoreSheet& qSS){
 
     os << "Player Name:" << qSS.name << "         Score:" << qSS.calcTotal()<< std::endl;
+	os << "------------------------------------" << std::endl;
     os << qSS.red << std::endl;
+	os << "------------------------------------" << std::endl;
     os << qSS.yellow <<std::endl;
+	os << "------------------------------------" << std::endl;
     os << qSS.green << std::endl;
+	os << "------------------------------------" << std::endl;
     os << qSS.blue << std::endl;
+	os << "------------------------------------" << std::endl;
 
     os << "Failed Throws:";
     if(qSS.failedThrow == 0) os<<std::endl;

@@ -6,6 +6,9 @@
 #include <list>
 #include <vector>
 
+/**
+ * Une implémentation de la classe ScoreSheet pour une partie de Qwixx.
+ */
 class QwixxScoreSheet: public ScoreSheet{
 
 private:

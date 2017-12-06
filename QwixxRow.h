@@ -5,6 +5,9 @@
 #include "Colour.h"
 #include<iostream>
 
+/**
+ * Une rangée pour une partie de Qwixx.
+ */
 template<class t, Colour c>
 class QwixxRow {
 
@@ -24,7 +27,9 @@ std::ostream& operator<<(std::ostream&, QwixxRow<t, c>&);
 
 #endif
 
-
+/**
+ * Class HELPER pour retourner le nombre d'entrées dans la row.
+ */
 template <class t, Colour c>
 int QwixxRow<t, c>::numberOfEntries() {
 
@@ -43,6 +48,9 @@ int QwixxRow<t, c>::numberOfEntries() {
     return number;
 }
 
+/**
+ * Constructeur
+ */
 template<class t, Colour c>
 QwixxRow<t, c>::QwixxRow() : holder() {
     locked = false;
@@ -68,6 +76,9 @@ QwixxRow<t, c>::QwixxRow() : holder() {
 
 }
 
+/**
+ * Incrémentation pour ajouter un score à la row.
+ */
 template<class t, Colour c>
 QwixxRow<t, c>& QwixxRow<t, c>::operator+=(const RollOfDice &rd) {
 
@@ -93,6 +104,13 @@ QwixxRow<t, c>& QwixxRow<t, c>::operator+=(const RollOfDice &rd) {
     return *this;
 }
 
+/**
+ * Imprime la row.
+ *
+ * Empty row looks like this:
+ * 
+ * Red | 2| 3| 4| 5| 6| 7| 8| 9|10|11|12| U 
+ */
 template <class t, Colour c>
 std::ostream& operator<<(std::ostream& os, QwixxRow<t, c>& qr) {
 

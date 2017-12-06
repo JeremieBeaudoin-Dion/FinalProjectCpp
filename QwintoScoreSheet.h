@@ -5,6 +5,9 @@
 #include "Colour.h"
 #include<iostream>
 
+/**
+ * Implémente une ScoreSheet pour un jeu de Qwinto.
+ */
 class QwintoScoreSheet: public ScoreSheet{
 	public:
 

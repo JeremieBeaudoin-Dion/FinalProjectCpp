@@ -1,11 +1,13 @@
 #include "Player.h"
 #include "QwintoPlayer.h"
-//#include "RollOfDice.h"
 #include "Dice.h"
 #include <string>
 #include<vector>
-void QwintoPlayer::inputBeforeRoll(RollOfDice& rOD)
-{
+
+/**
+ * Pose les questions au player avant de rouler des dés.
+ */
+void QwintoPlayer::inputBeforeRoll(RollOfDice& rOD) {
 
 	//Premiere Etape est de demander au joueur de choisir ses des a rouler
 
@@ -33,12 +35,12 @@ void QwintoPlayer::inputBeforeRoll(RollOfDice& rOD)
 	if(rep =="oui") rOD.allDices.push_back(Dice(Colour::YELLOW)); done=false;
 	if(rep == "non") done=false;
 	}
-
-    //RollOfDice rd(d);
-    //rOD.allDices = rd.allDices;
 	
 }
 
+/**
+ * Pose les questions au player après avoir roulé des dés.
+ */
 void QwintoPlayer::inputAfterRoll(RollOfDice& rOD){
 
 	std::string rep;

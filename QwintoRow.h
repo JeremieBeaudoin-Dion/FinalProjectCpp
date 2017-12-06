@@ -1,10 +1,12 @@
 #ifndef _QWINTOROW_H
 #define _QWINTOROW_H
 
-//#include "ScoreSheet.h" 
-//#include "Colour.h" 
 #include<iostream>
 
+/**
+ * A QwintowRow is a row of points that will be used in a
+ * Qwinto Game.
+ */
 template <Colour T>
 class QwintoRow{
 	

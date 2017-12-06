@@ -1,13 +1,9 @@
 #include "QwintoScoreSheet.h"
 #include "ScoreSheet.h"
-//#include "QwintoRow.h"
-//#include "Colour.h"
 
-//QwintoScoreSheet::QwintoScoreSheet(std::string n){
-	
-//	ScoreSheet(n);
-//}
-
+/**
+ * Returns the total points accumultated in the QwintoScoreSheet
+ */
 int QwintoScoreSheet::calcTotal(){
 
 //Premiere etape est de compter le nombre de case remplie dans les rangee
@@ -61,6 +57,9 @@ int QwintoScoreSheet::calcTotal(){
 
 }
 
+/**
+ * Aide à déterminer si la partie est finie.
+ */
 bool QwintoScoreSheet::operator!(){
 
 	int comp = 0;
@@ -88,6 +87,10 @@ bool QwintoScoreSheet::operator!(){
 
 }
 
+/**
+ * Return false si il est possible d'effectuer une opération dans
+ * une certaine position de la QwintoScoreSheet.
+ */
 bool QwintoScoreSheet::validate(const RollOfDice rOD, const Colour c, int position){
 
 	bool goodColor = false;
@@ -266,6 +269,10 @@ bool QwintoScoreSheet::validate(const RollOfDice rOD, const Colour c, int positi
 	else return false;
 }
 
+/**
+ * Essaie de scorer des points à une certaine position.
+ * Return false si non-validé.
+ */
 bool QwintoScoreSheet::score(const RollOfDice rOD, const Colour c, int position){
 
 	if(ScoreSheet::score(rOD,c,position)){
@@ -293,7 +300,19 @@ bool QwintoScoreSheet::score(const RollOfDice rOD, const Colour c, int position)
 	}
 }
 
-
+/**
+ * Imprime la QwintoScoreSheet comme suit:
+ *
+  * Player name:
+ *	 -------------------------------
+ *	Red      | % % |XX| % % | | | |
+ *	 ----------------------------------
+ *	Yellow | | | | | |XX| % % | |
+ *	 ----------------------------------
+ *	Blue | | % % |XX| | | | % %
+ *	 -------------------------------
+ *	Failed throws: 
+ */
 std::ostream& operator<<(std::ostream& os, QwintoScoreSheet& qSS){
 
 	os << "Player Name:" << qSS.name << "         Score:" << qSS.totalScore<< std::endl;

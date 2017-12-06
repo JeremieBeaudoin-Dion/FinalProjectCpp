@@ -6,6 +6,9 @@
 #include "Player.h"
 #include<iostream>
 
+/**
+ * Une implémentation de Player pour un jeu de Qwinto.
+ */
 class QwintoPlayer: public Player{
 	
 	public:

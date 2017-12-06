@@ -1,5 +1,9 @@
 #include "QwintoRow.h"
 
+/**
+ * Redefines the operator[] for returning the desired
+ * index of the row.
+ */
 template<int T> 
 int& QwintoRow<T>::operator[](int index){
 	
@@ -9,6 +13,10 @@ int& QwintoRow<T>::operator[](int index){
 	return 0;
 
 }
+
+/**
+ * Will return true if the operation is valid.
+ */
 template <int T>
 bool QwintoRow<T>::validate(int value){
 	
@@ -16,6 +24,15 @@ bool QwintoRow<T>::validate(int value){
 	else return false;
 
 }
+
+/**
+ * Prints a Row in the desired std::ostream&.
+ *
+ * An empty row looks like this:
+ *
+ *	Red | % % |XX| % % | | | |
+ *
+ */
 template <int T>
 std::ostream& operator<<(std::ostream& os,QwintoRow<T>& qR){
 

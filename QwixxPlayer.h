@@ -5,6 +5,10 @@
 #include "Player.h"
 #include "QwixxScoreSheet.h"
 
+
+/**
+ * Hérite de Player pour un Qwixx game.
+ */
 class QwixxPlayer: public Player{
 
 public:

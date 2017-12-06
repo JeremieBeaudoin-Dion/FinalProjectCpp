@@ -1,5 +1,8 @@
 #include "QwixxPlayer.h"
 
+/**
+ * Pose des questions au joueur avant le diceroll
+ */
 void QwixxPlayer::inputBeforeRoll(RollOfDice& rOD) {
 
     if (active) {
@@ -20,10 +23,14 @@ void QwixxPlayer::inputBeforeRoll(RollOfDice& rOD) {
 
 }
 
+/**
+ * Pose des questions au joueur après le diceroll
+ */
 void QwixxPlayer::inputAfterRoll(RollOfDice & rOD) {
 
     int numberOfTakenThrows = 0;
 
+	// Le joueur à qui c'est le tour peut combiner un dé avec un dé blanc pour un score
     if (active) {
         std::cout << "Voici les dés qui ont été joues" << std::endl;
         std::cout << rOD << std::endl;
@@ -87,6 +94,8 @@ void QwixxPlayer::inputAfterRoll(RollOfDice & rOD) {
         }
 
     }
+	
+	// Tous les joueurs peuvent scorer avec les dés blancs.
 
     std::cout << "Voici les dés qui ont été joues" << std::endl;
     std::cout << rOD << std::endl;

@@ -5,6 +5,9 @@
 #include "Colour.h"
 #include<iostream>
 
+/**
+ * Une classe abstraite pour une ScoreSheet soit pour Qwixx ou Quinto.
+ */
 class ScoreSheet{
 	
 	public:
@@ -26,6 +29,5 @@ class ScoreSheet{
 		virtual bool validate(const RollOfDice, const Colour, int position) = 0;
 
 };
-	//std::ostream& operator<<(std::ostream&, ScoreSheet);
 
 #endif
