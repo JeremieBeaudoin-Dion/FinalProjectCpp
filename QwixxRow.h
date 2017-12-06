@@ -54,13 +54,13 @@ QwixxRow<t, c>::QwixxRow() : holder() {
         case 0:
 
         case 1:
-            for (int i=0; i<13; i++) {
+            for (int i=2; i<13; i++) {
                 holder.push_back(i);
             }
             break;
 
         default:
-            for (int i=12; i<-1; i--) {
+            for (int i=12; i>1; i--) {
                 holder.push_back(i);
             }
             break;
@@ -124,6 +124,7 @@ std::ostream& operator<<(std::ostream& os, QwixxRow<t, c>& qr) {
                 os << " ";
             }
             os << number;
+
         } else {
             os << "XX";
         }

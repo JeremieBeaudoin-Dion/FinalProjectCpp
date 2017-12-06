@@ -82,7 +82,7 @@ bool QwixxScoreSheet::score(const RollOfDice rOD, const Colour c, int position) 
                     green += rOD;
                     return true;
             }
-        } catch (std::string & s) {
+        } catch (...) {
             failedThrows++;
             return false;
         }

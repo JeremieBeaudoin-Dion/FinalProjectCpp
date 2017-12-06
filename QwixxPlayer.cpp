@@ -86,49 +86,49 @@ void QwixxPlayer::inputAfterRoll(RollOfDice & rOD) {
 
         }
 
-    } else {
-        std::cout << "Voici les dés qui ont été joues" << std::endl;
-        std::cout << rOD << std::endl;
+    }
 
-        std::string rep = "";
-        bool done = true;
+    std::cout << "Voici les dés qui ont été joues" << std::endl;
+    std::cout << rOD << std::endl;
 
-        std::cout << "Voulez-vous prendre des points avec les dés blancs?" << std::endl;
+    std::string rep = "";
+    bool done = true;
+
+    std::cout << "Voulez-vous prendre des points avec les dés blancs?" << std::endl;
+
+    while (done) {
+        std::cin >> rep;
+        if (rep == "oui" || rep == "non") done = false;
+    }
+
+    if (rep == "oui") {
+
+        numberOfTakenThrows++;
+        std::cout << "Dans quelle couleur voulez-vous mettre les points?" << std::endl;
+
+        done = true;
+        std::string color = "";
 
         while (done) {
-            std::cin >> rep;
-            if (rep == "oui" || rep == "non") done = false;
+            std::cin >> color;
+            if (color == "red" || color == "yellow" || color == "blue" || color == "green") done = false;
         }
 
-        if (rep == "oui") {
+        Dice * colorDice = nullptr;
+        if (color == "red") {
+            colorDice = &rOD.allDices[0];
 
-            numberOfTakenThrows++;
-            std::cout << "Dans quelle couleur voulez-vous mettre les points?" << std::endl;
+        } else if (color == "yellow") {
+            colorDice = &rOD.allDices[1];
 
-            done = true;
-            std::string color = "";
+        } else if (color == "blue") {
+            colorDice = &rOD.allDices[2];
 
-            while (done) {
-                std::cin >> color;
-                if (color == "red" || color == "yellow" || color == "blue" || color == "green") done = false;
-            }
-
-            Dice * colorDice = nullptr;
-            if (color == "red") {
-                colorDice = &rOD.allDices[0];
-
-            } else if (color == "yellow") {
-                colorDice = &rOD.allDices[1];
-
-            } else if (color == "blue") {
-                colorDice = &rOD.allDices[2];
-
-            } else if (color == "green") {
-                colorDice = &rOD.allDices[3];
-            }
-
-            qSS.score(rOD.pair(rOD.allDices[4], rOD.allDices[5]), colorDice->colour);
+        } else if (color == "green") {
+            colorDice = &rOD.allDices[3];
         }
+
+        qSS.score(rOD.pair(rOD.allDices[4], rOD.allDices[5]), colorDice->colour);
 
     }
 
