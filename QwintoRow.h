@@ -55,7 +55,10 @@ std::ostream& operator<<(std::ostream& os,QwintoRow<T>& qR){
                 for(int i=0;i<9;i++){
 
                         if(qR[i]==0) os<<" ";
-                        else {os<<qR[i];}
+                        else {
+                                if(qR[i]>10) os<<qR[i];
+                                else os<<" "<<qR[i];
+                        }
 
                         switch ( i ) {
 
@@ -82,7 +85,7 @@ std::ostream& operator<<(std::ostream& os,QwintoRow<T>& qR){
 
 
                 }
-                os <<std::endl<<"           ----------------------------------" <<std::endl;
+                os <<std::endl<<"          -------------------------" <<std::endl;
                         break;
 
                         //os << "Red                 "<< ((qR[0]==0)?' ':qR[0]) << '|' << char((qR[1]==0)?' ':qR[1]) << '%' << ((qR[2]==0)?' ':qR[2]) << '%' << ((qR[3]==0)?' ':qR[3]); os << "|XX| "<< ((qR[4]==0)?' ':qR[4]) << '%' << ((qR[5]==0)?' ':qR[5]) << '%' << ((qR[6]==0)?' ':qR[6]) << '|' << ((qR[7]==0)?' ':qR[7]) << '|' << ((qR[8]==0)?' ':qR[8]);os << '|' << std::endl;
@@ -95,18 +98,24 @@ std::ostream& operator<<(std::ostream& os,QwintoRow<T>& qR){
                 for(int i=0;i<9;i++){
 
                         if(qR[i]==0) os<<" ";
-                        else {os<<qR[i];}
+                        else {
+                                if(qR[i]>10) os<<qR[i];
+                                else os<<" "<<qR[i];
+                        }
 
                         switch ( i ) {
 
+                                case 4:
+                                os << "|XX|";
+                                break;
                                 case 5:
                                 os << '%';
                                 break;
+
                                 case 6:
                                 os << '%';
                                 break;
-                                case 4:
-                                os << "|XX|";
+
                                 default:
                                 os <<'|';
                                 break;
@@ -115,7 +124,7 @@ std::ostream& operator<<(std::ostream& os,QwintoRow<T>& qR){
 
 
                 }
-                os <<std::endl<<"         ----------------------------------" <<std::endl;
+                os <<std::endl<<"         ------------------------" <<std::endl;
                         break;
                         // os << "Yellow   "<< ((qR[0]==0)?' ':qR[0]) << '|' << ((qR[1]==0)?' ':qR[1]) << '|' << ((qR[2]==0)?' ':qR[2]) << '|' << ((qR[3]==0)?' ':qR[3]) << '|' << ((qR[4]==0)?' ':qR[4]);os << '|' << "|XX| "<< ((qR[5]==0)?' ':qR[5]) << '%' << ((qR[6]==0)?' ':qR[6]) << '%' << ((qR[7]==0)?' ':qR[7]) << '|' << ((qR[8]==0)?' ':qR[8]);os << '|' << std::endl;
                         // os <<"                  ----------------------------------" <<std::endl;
@@ -126,7 +135,10 @@ std::ostream& operator<<(std::ostream& os,QwintoRow<T>& qR){
                 for(int i=0;i<9;i++){
 
                         if(qR[i]==0) os<<" ";
-                        else {os<<qR[i];}
+                        else {
+                                if(qR[i]>10) os<<qR[i];
+                                else os<<" "<<qR[i];
+                        }
 
                         switch ( i ) {
 
@@ -153,7 +165,7 @@ std::ostream& operator<<(std::ostream& os,QwintoRow<T>& qR){
 
 
                 }
-                os <<std::endl<<"       ----------------------------------" <<std::endl;
+                os <<std::endl<<"         ----------------------" <<std::endl;
                         break;
                         // os << "Blue     "<< ((qR[0]==0)?' ':qR[0]) << '|' << ((qR[1]==0)?' ':qR[1]) << '|' << ((qR[2]==0)?' ':qR[2]) << '%' << ((qR[3]==0)?' ':qR[3]) << '%' << ((qR[4]==0)?' ':qR[4]);os << "|XX| "<< ((qR[5]==0)?' ':qR[5]) << '|' << ((qR[6]==0)?' ':qR[6]) << '|' << ((qR[7]==0)?' ':qR[7]) << '%' << ((qR[8]==0)?' ':qR[8]);os << '%' << std::endl;
                         // os <<"          ----------------------------------" <<std::endl;

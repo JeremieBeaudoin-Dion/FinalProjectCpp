@@ -7,7 +7,7 @@
 class Player{
 	
 	public:
-		bool active;
+		bool active = false;
 		//std::string name;
 		virtual void inputBeforeRoll(RollOfDice&) = 0;
 		virtual void inputAfterRoll(RollOfDice&) = 0;

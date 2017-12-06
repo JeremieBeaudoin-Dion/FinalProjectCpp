@@ -6,6 +6,7 @@
 //#include "QwintoRow.h"
 #include "QwintoScoreSheet.h"
 #include "QwintoPlayer.h"
+//#include "Player.h"
 
 /**
  * PLAYING DICE
@@ -23,12 +24,149 @@
  */
 void runQwinto() {
 	
+	std::cout << "------QWINTO-------" << std::endl;
+	std::cout << "SVP choisir le nombre de joueurs (1 a 3): " << std::endl;
+	int nPlayer;
+	while(true){
+		std::cin >> nPlayer;
+		if(nPlayer>=1 && nPlayer<=3) break;
+	}
+
+	std::string name;
+
+	std::vector<QwintoPlayer> qP;
+	for(int i=1;i<=nPlayer;i++)
+	{
+
+		std::cout << "Jouer " << i << ", svp rentrez votre nom: ";
+		std::cin >> name;
+		qP.push_back(QwintoPlayer(name));
+
+	}
+	qP[nPlayer-1].active = true;
+
+	bool endcondition = true;
+	while(endcondition){
+	RollOfDice rOD;
+	
+	int nextP = 0;
+
+	for (nextP;nextP<qP.size();nextP++) {
+		if(qP[nextP].active){
+			qP[nextP].active = false;
+			qP[(nextP+1)%nPlayer].active = true;
+			break;
+		}
+	}
+
+	//std::cout << "C'est a votre tour de jouer "<< qP[(nextP+1)%nPlayer].qSS.name <<std::endl;
+	qP[(nextP+1)%nPlayer].inputBeforeRoll(rOD);
+	
+	rOD.roll();
+	std::cout << rOD << std::endl;
+	std::cout << qP[(nextP+1)%nPlayer].qSS << std::endl;
+	qP[(nextP+1)%nPlayer].inputAfterRoll(rOD);
+
+	nextP = 0;
+	for (nextP;nextP<qP.size();nextP++) {
+		if(!(qP[nextP].active)){
+			std::cout << qP[(nextP)].qSS << std::endl;
+			qP[nextP].inputAfterRoll(rOD);
+		}
+	}
+	for (auto i=0;i<qP.size();i++) {
+		if(!(!(qP[i].qSS))) endcondition = false;
+		}
+	}
+	int maxScore = -1;
+    QwintoPlayer* winningPlayer = nullptr;
+    for (QwintoPlayer p : qP) {
+
+        std::cout << p.qSS << std::endl;
+
+        if (p.qSS.totalScore > maxScore) {
+            winningPlayer = &p;
+            maxScore = p.qSS.totalScore;
+        }
+
+    }
+
+    std::cout << winningPlayer->qSS.name << ", vous avez gagné!" << std::endl;
 }
 
 /**
  * Runs the Qwixx Game
  */
 void runQwixx() {
+
+	std::cout << "------QWIXX-------" << std::endl;
+	std::cout << "SVP choisir le nombre de joueurs (1 a 3): " << std::endl;
+	int nPlayer;
+	while(true){
+		std::cin >> nPlayer;
+		if(nPlayer>=1 && nPlayer<=3) break;
+	}
+
+	std::string name;
+
+	std::vector<QwixxPlayer> qP;
+	for(int i=1;i<=nPlayer;i++)
+	{
+
+		std::cout << "Jouer " << i << ", svp rentrez votre nom: ";
+		std::cin >> name;
+		qP.push_back(QwintoPlayer(name));
+
+	}
+	qP[nPlayer-1].active = true;
+
+	bool endcondition = true;
+	while(endcondition){
+	RollOfDice rOD;
+	
+	int nextP = 0;
+
+	for (nextP;nextP<qP.size();nextP++) {
+		if(qP[nextP].active){
+			qP[nextP].active = false;
+			qP[(nextP+1)%nPlayer].active = true;
+			break;
+		}
+	}
+
+	//std::cout << "C'est a votre tour de jouer "<< qP[(nextP+1)%nPlayer].qSS.name <<std::endl;
+	qP[(nextP+1)%nPlayer].inputBeforeRoll(rOD);
+	
+	rOD.roll();
+	std::cout << rOD << std::endl;
+	std::cout << qP[(nextP+1)%nPlayer].qSS << std::endl;
+	qP[(nextP+1)%nPlayer].inputAfterRoll(rOD);
+
+	nextP = 0;
+	for (nextP;nextP<qP.size();nextP++) {
+		if(!(qP[nextP].active)){
+			std::cout << qP[(nextP)].qSS << std::endl;
+			qP[nextP].inputAfterRoll(rOD);
+		}
+	}
+	for (auto i=0;i<qP.size();i++) {
+		if(!(!(qP[i].qSS))) endcondition = false;
+		}
+	}
+	int maxScore = -1;
+    QwixxPlayer* winningPlayer = nullptr;
+    for (QwixxPlayer p : qP) {
+
+        std::cout << p.qSS << std::endl;
+
+        if (p.qSS.totalScore > maxScore) {
+            winningPlayer = &p;
+            maxScore = p.qSS.totalScore;
+        }
+
+    }
+
+    std::cout << winningPlayer->qSS.name << ", vous avez gagné!" << std::endl;
 	
 }
 
@@ -51,9 +189,28 @@ void testDice() {
 	std::cout << d1 << std::endl;
 }
 
+// void testQwixxPlayer() {
+//     QwixxPlayer qA("Jer");
+//     RollOfDice rd;
+//     while(!(qA.qSS)){
+//         RollOfDice rd;
+//         qA.inputBeforeRoll(rd);
+//         //std::cout<<"BEFOREROLLDONE"<<std::endl;
+//         //std::cout<<"ROLLDONE"<<std::endl;
+//         std::cout<<rd<<std::endl;
+//         //std::cout<<"BEFOREROLLDONE"<<std::endl;
+//         qA.qSS.setTotal();
+//         //std::cout<<"BEFOREROLLDONE"<<std::endl;
+//         std::cout<< qA.qSS <<std::endl;
+//         qA.inputAfterRoll(rd);
+//         std::cout<< qA.qSS <<std::endl;
+
+//     }
+// }
+
 /**
  * A test that tests QwintoRow
- */
+ */ 
 void testQwintoRow() {
     QwintoRow<Colour::BLUE> row; 
     std::vector<Dice> d;
@@ -178,5 +335,15 @@ int main(int argc, char** argv) {
 		doTestAccordingToStringValue(std::string(argv[1]));
 	}
 	
-	return 0;
+	else{
+
+		bool cond = true;
+		std::string rep;
+		while(cond){
+			std::cout << "SVP choisir la version du jeu(Qwinto ou Qwixx), en ecrivant <<qwinto>> ou <<qwixx>>" << std::endl;	
+			std::cin >> rep;
+			if(rep.compare("qwinto")==0) runQwinto();
+			if(rep.compare("qwixx")==0) runQwixx();
+		}
+	}
 }

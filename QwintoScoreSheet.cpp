@@ -95,12 +95,10 @@ bool QwintoScoreSheet::validate(const RollOfDice rOD, const Colour c, int positi
 	bool croissant = true;
 	bool superposition = true;
 
-	std::cout << rOD << std::endl;
-	std::cout << static_cast<int>(c) << std::endl;
-	std::cout << (int)position << std::endl;
 	//Est-ce que la couleur choisie de la rangee est valide avec les des roules?
-	for (auto i=0;i<rOD.allDices.size();i++) {
-		if(static_cast<int>(rOD.allDices[i].colour) == static_cast<int>(c)) goodColor = true; break;
+	for (auto i=0;i<=rOD.allDices.size();i++) {
+		if(static_cast<int>(rOD.allDices[i].colour) == static_cast<int>(c)) goodColor = true;
+
 	}
 
 	switch(static_cast<int>(c)){
@@ -109,6 +107,12 @@ bool QwintoScoreSheet::validate(const RollOfDice rOD, const Colour c, int positi
 			goodColumn = red.validate(position);
 			for(int i=0;i<=position;i++){
 				if(red[i]>rOD){
+					croissant = false;
+					//break;
+				}
+			}
+			for(int i=position;i<9;i++){
+				if(red[i]<rOD && red[i]!=0){
 					croissant = false;
 					//break;
 				}
@@ -151,6 +155,12 @@ bool QwintoScoreSheet::validate(const RollOfDice rOD, const Colour c, int positi
 			goodColumn = yellow.validate(position);
 			for(int i=0;i<=position;i++){
 				if(yellow[i]>rOD){
+					croissant = false;
+					//break;
+				}
+			}
+			for(int i=position;i<9;i++){
+				if(yellow[i]<rOD && yellow[i]!=0){
 					croissant = false;
 					//break;
 				}
@@ -203,6 +213,12 @@ bool QwintoScoreSheet::validate(const RollOfDice rOD, const Colour c, int positi
 					//break;
 				}
 			}
+			for(int i=position;i<9;i++){
+				if(blue[i]<rOD && blue[i]!=0){
+					croissant = false;
+					//break;
+				}
+			}
 
 			switch(position){
 
@@ -246,11 +262,6 @@ bool QwintoScoreSheet::validate(const RollOfDice rOD, const Colour c, int positi
 				}
 			break;
 	}
-	//std::cout<<"BEFORE COND"<< std::endl;
-	//std::cout << goodColor << std::endl;
-	//std::cout << goodColumn << std::endl;
-	//std::cout << croissant << std::endl;
-	//std::cout << superposition << std::endl;
 	if (goodColumn && goodColor && superposition && croissant) return true;
 	else return false;
 }
@@ -259,17 +270,17 @@ bool QwintoScoreSheet::score(const RollOfDice rOD, const Colour c, int position)
 
 	if(ScoreSheet::score(rOD,c,position)){
 
-		switch(c){
+		switch(static_cast<int>(c)){
 
-			case Colour::RED:
+			case 0:
 				red[position] = rOD;
 				break;
 
-			case Colour::YELLOW:
+			case 1:
 				yellow[position] = rOD;
 				break;
 
-			case Colour::BLUE:
+			case 2:
 				blue[position] = rOD;
 				break;
 		}
@@ -286,9 +297,19 @@ bool QwintoScoreSheet::score(const RollOfDice rOD, const Colour c, int position)
 std::ostream& operator<<(std::ostream& os, QwintoScoreSheet& qSS){
 
 	os << "Player Name:" << qSS.name << "         Score:" << qSS.totalScore<< std::endl;
+	os << "         --------------------------" << std::endl;
 	os << qSS.red << std::endl;
 	os << qSS.yellow <<std::endl;
 	os << qSS.blue << std::endl;
+	os << "Failed Throws:";
+	if(qSS.failedThrow == 0) os<<std::endl;
+	else{
+
+		for(int i=1;i<=qSS.failedThrow;i++){
+			os <<" "<<i;
+		}
+		os<<std::endl;
+	}
 
 	return os;
 

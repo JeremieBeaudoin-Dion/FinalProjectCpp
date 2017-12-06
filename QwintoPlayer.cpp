@@ -9,7 +9,7 @@ void QwintoPlayer::inputBeforeRoll(RollOfDice& rOD)
 
 	//Premiere Etape est de demander au joueur de choisir ses des a rouler
 
-	std::cout<<"C'est a votre tour de jouer. Lorsque demande, repondez <<oui>> si vous voulez jouer le de";
+	std::cout<<"C'est a votre tour de jouer " <<qSS.name<<". Lorsque demande, repondez <<oui>> si vous voulez jouer le de";
 	std::cout<<" en question, et <non> pour ne pas le rouler" << std::endl;
 	std::string rep="";
 	bool done=true;
