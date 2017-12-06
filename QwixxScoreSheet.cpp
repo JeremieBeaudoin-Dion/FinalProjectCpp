@@ -125,7 +125,16 @@ std::ostream& operator<<(std::ostream& os, QwixxScoreSheet& qSS){
     os << qSS.yellow <<std::endl;
     os << qSS.green << std::endl;
     os << qSS.blue << std::endl;
-    os << "Failed throws: " << qSS.failedThrows << std::endl;
+
+    os << "Failed Throws:";
+    if(qSS.failedThrow == 0) os<<std::endl;
+    else{
+
+        for(int i=1;i<=qSS.failedThrow;i++){
+            os <<" "<<i;
+        }
+        os<<std::endl;
+    }
 
     return os;
 
