@@ -4,6 +4,11 @@
 #include"RollOfDice.h"
 #include<iostream>
 
+/**
+ * The Player is an abstract class that ensures that
+ * the methods inputBeforeRoll() and inputAfterRoll()
+ * will be implemented in QwixxPlayer and QwintoPlayer
+ */
 class Player{
 	
 	public:
